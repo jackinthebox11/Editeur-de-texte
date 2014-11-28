@@ -2,39 +2,48 @@ package Receiver;
 
 public class Buffer {
 
-	private String texte;
-	private Selection selection;
-	private PressePapier pressePapier;
-	
-	public Buffer() {
-		texte = "";
-		selection = new Selection();
-		pressePapier = new PressePapier();
-	}
+    private StringBuffer buffer;
 
-    public void copier() {
-        if (selection.getFin() > 0)
-            pressePapier.setTexte(getSelection());
+    public Buffer() {
+        buffer = new StringBuffer();
 
     }
 
-    public void couper() {
-        if (selection.getFin() > 0)
-            pressePapier.setTexte(getSelection());
+    public String getBuffer() {
+
+        return buffer.toString();
+    }
+
+    public String getBufferSelection(int debut, int fin) {
+        return buffer.substring(debut, fin);
+
+    }
+
+    public void addString(String texte) {
+        buffer.append(texte);
+
+    }
+
+    public void addStringAtPosition(String texte, int position) {
+        buffer.insert(position,texte);
+
+    }
+
+    public void deleteBufferSelection(int debut, int fin) {
+        if (debut < 0)
+            debut = 0;
+        if (fin < 0)
+            fin = 0;
+        buffer.delete(debut, fin);
 
     }
 
 
 
-    /*
-     Renvoie le texte selectionné
-     */
-    public String getSelection() {
-        int i = selection.getDebut(), l = selection.getFin();
-        if (selection.getFin() > 0) {
-            return texte.substring(i, i + l);
-        } else {
-            return "";
-        }
-    }
+
+
+
+
+
+
 }

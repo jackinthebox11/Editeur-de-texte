@@ -1,5 +1,6 @@
 package Command;
 
+import Invoker.IHM;
 import Receiver.Moteur;
 
 /**
@@ -9,12 +10,15 @@ public class inserer implements Command {
 
     private Moteur moteur;
 
+    private IHM ihm;
+
     public inserer(Moteur moteur) {
         this.moteur = moteur;
 
     }
 
     public void execute() {
-        moteur.inserer();
+
+        moteur.inserer(ihm.getTextUser());
     }
 }

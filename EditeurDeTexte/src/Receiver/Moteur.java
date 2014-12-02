@@ -5,7 +5,7 @@ package Receiver;
  */
 public interface Moteur {
 
-    public void inserer(String input, Buffer buffer);
+    public void saisir(String input);
 
     public void copier();
 
@@ -13,6 +13,18 @@ public interface Moteur {
 
     public void couper();
 
+    public void selectionner(int debut, int fin);
+
     public Buffer getBuffer();
+
+    public void setBuffer(Buffer buffer);
+
+    public PressePapier getPressePapier();
+
+    public void setPressePapier(PressePapier pressePapier);
+
+    public Selection getSelection();
+
+    public void setSelection(Selection selection);
 
 }

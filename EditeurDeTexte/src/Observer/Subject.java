@@ -9,6 +9,7 @@ public interface Subject {
 
     /**
      * Notifie tous les <i>Observers</i> enregistrés.
+     *
      */
     void notifyObservers();
 
@@ -28,6 +29,10 @@ public interface Subject {
      *
      */
     void unregisterObserver(Observer o);
+
+
+    void setChanged();
+
 
 
 }

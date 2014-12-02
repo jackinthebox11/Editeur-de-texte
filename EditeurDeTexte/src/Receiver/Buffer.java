@@ -7,14 +7,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class Buffer implements Subject {
+public class Buffer {
 
     private StringBuffer buffer;
-    private Collection<Observer> observers;
 
     public Buffer() {
         buffer = new StringBuffer();
-        observers = new ArrayList<Observer>();
     }
 
     public String getBuffer() {
@@ -22,45 +20,37 @@ public class Buffer implements Subject {
         return buffer.toString();
     }
 
-    public String getBufferSelection(int debut, int fin) {
+    public String getBufferContenu(int debut, int fin) {
         return buffer.substring(debut, fin);
 
     }
 
-    public void addString(String texte) {
+    public String getBufferContenu() {
+       return buffer.toString();
+    }
+
+    public void setBufferContenu(String texte) {
         buffer.append(texte);
 
     }
 
-    public void addStringAtPosition(String texte, int position) {
+    public void inserer(String texte, int position) {
         buffer.insert(position,texte);
 
     }
 
-    public void deleteBufferSelection(int debut, int fin) {
-        if (debut < 0)
-            debut = 0;
-        if (fin < 0)
-            fin = 0;
+    public void effacer(int debut, int fin) {
         buffer.delete(debut, fin);
 
     }
 
-    @Override
-    public void notifyObservers() {
-        for (Iterator<Observer> it = observers.iterator(); it.hasNext();) {
-            Observer o = it.next();
-            o.maj(this);
+    public void effacer() {
+        if(buffer.length() > 0) {
+            buffer.delete(0, buffer.length());
         }
     }
 
-    @Override
-    public void unregisterObserver(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void registerObserver(Observer o) {
-        observers.remove(o);
+    public int size() {
+        return buffer.length();
     }
 }

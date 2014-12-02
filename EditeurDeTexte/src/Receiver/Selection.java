@@ -36,4 +36,9 @@ public class Selection {
 		else
 			this.fin = 0;
 	}
+
+
+	public int getLongueur() {
+		return this.fin - this.debut;
+	}
 }

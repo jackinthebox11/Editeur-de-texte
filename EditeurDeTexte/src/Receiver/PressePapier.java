@@ -16,8 +16,8 @@ public class PressePapier {
 
 	}
 
-	public void setPressePapier(String texte) {
-		this.pressePapier = texte;
+	public void setPressePapier(String contenu) {
+		this.pressePapier = contenu;
 
 	}
 }

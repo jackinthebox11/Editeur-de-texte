@@ -1,5 +1,7 @@
 package Receiver;
 
+import Observer.Subject;
+
 /**
  * Created by Alex on 26/10/2014.
  */
@@ -11,16 +13,20 @@ public class MoteurImpl implements Moteur {
 
     private Selection selection;
 
+
+
     public MoteurImpl() {
         buffer = new Buffer();
         pressePapier = new PressePapier();
         selection = new Selection();
+
 
     }
 
     @Override
     public void inserer(String input) {
         buffer.addStringAtPosition(input, selection.getDebut());
+        buffer.notifyObservers();
     }
 
     @Override
@@ -35,7 +41,7 @@ public class MoteurImpl implements Moteur {
     @Override
     public void coller() {
         buffer.addStringAtPosition(pressePapier.getPressePapier(), selection.getDebut());
-
+        buffer.notifyObservers();
     }
 
     @Override
@@ -46,5 +52,6 @@ public class MoteurImpl implements Moteur {
                 )
         );
         buffer.deleteBufferSelection(selection.getDebut(), selection.getFin());
+        buffer.notifyObservers();
     }
 }

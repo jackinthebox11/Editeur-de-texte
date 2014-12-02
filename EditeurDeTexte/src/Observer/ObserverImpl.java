@@ -1,5 +1,6 @@
 package Observer;
 
+import Invoker.Affichage;
 import Invoker.IHM;
 import Receiver.Buffer;
 
@@ -17,6 +18,6 @@ public class ObserverImpl implements Observer {
     @Override
     public void notifyMe() {
         Buffer buffer = (Buffer) subject;
-
+        //Affichage.(buffer.getBuffer());
     }
 }

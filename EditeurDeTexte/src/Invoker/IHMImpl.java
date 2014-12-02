@@ -12,6 +12,7 @@ public class IHMImpl implements IHM {
 
     private JFrame fenetre;
 
+    private  JPanel mainPanel;
     private JPanel toolBoxPanel;
     private JPanel txtAreaPanel;
     private JPanel userTxtPanel;
@@ -21,6 +22,7 @@ public class IHMImpl implements IHM {
     private JButton Copier;
     private JButton Couper;
     private JButton Coller;
+    private JButton Inserer;
 
     private JTextField userText;
     private JTextArea affichage;
@@ -29,8 +31,6 @@ public class IHMImpl implements IHM {
     public IHMImpl() {
 
         construireFenetre();
-        construirePanel();
-
     }
 
     /**
@@ -41,31 +41,57 @@ public class IHMImpl implements IHM {
 
         fenetre = new JFrame();
 
-        fenetre.setTitle("Mini Editeur");
-        fenetre.setSize(400, 100);
+        fenetre.setTitle("Editeur de texte");
+        fenetre.setSize(600, 400);
         fenetre.setLocationRelativeTo(null);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setLayout(new BorderLayout());
+        fenetre.setContentPane(construirePanel());
         fenetre.setVisible(true);
-        fenetre.add(toolBoxPanel, BorderLayout.NORTH);
-        fenetre.add(txtAreaPanel, BorderLayout.CENTER);
-        fenetre.add(userTxtPanel, BorderLayout.SOUTH);
-
-
 
     }
 
     @Override
-    public void construirePanel() {
+    public JPanel construirePanel() {
+
+        mainPanel = new JPanel();
 
         toolBoxPanel = new JPanel();
-        toolBoxPanel.add(boutonToolBar);
+        boutonToolBar = new JToolBar();
+        construireBouton();
+        toolBoxPanel.setLayout(new BorderLayout());
+        toolBoxPanel.add(boutonToolBar, BorderLayout.CENTER);
 
         txtAreaPanel = new JPanel();
+        affichage = new JTextArea();
         txtAreaPanel.add(affichage);
+        txtAreaPanel.setBackground(Color.WHITE);
 
         userTxtPanel = new JPanel();
-        userTxtPanel.add(userText);
+        userText = new JTextField();
+        userTxtPanel.setLayout(new BorderLayout());
+        userTxtPanel.add(userText, BorderLayout.CENTER);
+        userText.setBackground(Color.GRAY);
+        Inserer = new JButton("Inserer");
+        userTxtPanel.add(Inserer, BorderLayout.EAST);
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(toolBoxPanel, BorderLayout.NORTH);
+        mainPanel.add(txtAreaPanel, BorderLayout.CENTER);
+        mainPanel.add(userTxtPanel, BorderLayout.SOUTH);
+
+        return mainPanel;
+
+
+    }
+
+    public void construireBouton() {
+        Copier = new JButton("Copier");
+        Couper = new JButton("Couper");
+        Coller = new JButton("Coller");
+
+        boutonToolBar.add(Copier);
+        boutonToolBar.add(Couper);
+        boutonToolBar.add(Coller);
 
 
     }

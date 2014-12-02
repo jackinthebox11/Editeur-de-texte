@@ -1,12 +1,20 @@
 package Receiver;
 
-public class Buffer {
+import Observer.Observer;
+import Observer.Subject;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+public class Buffer implements Subject {
 
     private StringBuffer buffer;
+    private Collection<Observer> observers;
 
     public Buffer() {
         buffer = new StringBuffer();
-
+        observers = new ArrayList<Observer>();
     }
 
     public String getBuffer() {
@@ -38,12 +46,21 @@ public class Buffer {
 
     }
 
+    @Override
+    public void notifyObservers() {
+        for (Iterator<Observer> it = observers.iterator(); it.hasNext();) {
+            Observer o = it.next();
+            o.notifyMe();
+        }
+    }
 
+    @Override
+    public void unregisterObserver(Observer o) {
+        observers.add(o);
+    }
 
-
-
-
-
-
-
+    @Override
+    public void registerObserver(Observer o) {
+        observers.remove(o);
+    }
 }

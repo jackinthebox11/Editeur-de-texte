@@ -1,5 +1,7 @@
 package Observer;
 
+import java.util.Collection;
+
 /**
  * Created by Alex on 28/10/2014.
  */
@@ -26,16 +28,6 @@ public interface Subject {
      *
      */
     void unregisterObserver(Observer o);
-
-
-    /**
-     * Checks whether an observer is registered
-     *
-     * @param o the observer to check
-     * @return true iff o is already in the registered observers' set of this
-     * @throws IllegalArgumentException if o is null
-     */
-    boolean isRegistered(Observer o);
 
 
 }

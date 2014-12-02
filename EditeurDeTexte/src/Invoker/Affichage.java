@@ -19,4 +19,6 @@ public class Affichage extends JTextArea {
         this.commands = commands;
 
     }
+
+
 }

@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import Command.Command;
 
 /**
  * Created by Alex on 28/10/2014.
@@ -19,10 +22,10 @@ public class IHMImpl implements IHM {
 
     private JToolBar boutonToolBar;
 
-    private JButton Copier;
-    private JButton Couper;
-    private JButton Coller;
-    private JButton Inserer;
+    private JButton btnCopier;
+    private JButton btnCouper;
+    private JButton btnColler;
+    private JButton btnInserer;
 
     private JTextField userText;
     private JTextArea affichage;
@@ -71,8 +74,8 @@ public class IHMImpl implements IHM {
         userTxtPanel.setLayout(new BorderLayout());
         userTxtPanel.add(userText, BorderLayout.CENTER);
         userText.setBackground(Color.GRAY);
-        Inserer = new JButton("Inserer");
-        userTxtPanel.add(Inserer, BorderLayout.EAST);
+        btnInserer = new JButton("Inserer");
+        userTxtPanel.add(btnInserer, BorderLayout.EAST);
 
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(toolBoxPanel, BorderLayout.NORTH);
@@ -85,13 +88,13 @@ public class IHMImpl implements IHM {
     }
 
     public void construireBouton() {
-        Copier = new JButton("Copier");
-        Couper = new JButton("Couper");
-        Coller = new JButton("Coller");
+        btnCopier = new JButton("Copier");
+        btnCouper = new JButton("Couper");
+        btnColler = new JButton("Coller");
 
-        boutonToolBar.add(Copier);
-        boutonToolBar.add(Couper);
-        boutonToolBar.add(Coller);
+        boutonToolBar.add(btnCopier);
+        boutonToolBar.add(btnCouper);
+        boutonToolBar.add(btnColler);
 
 
     }
@@ -99,6 +102,19 @@ public class IHMImpl implements IHM {
     @Override
     public String getTextUser() {
         return userText.getText();
+
+    }
+
+    public void setCommands(HashMap<String, Command> c) throws Exception {
+        this.btnCopier = (JButton) c.get("Copier");
+        if (this.btnCopier == null) new Exception("commande introuvable");
+        this.btnCouper = (JButton) c.get("Couper");
+        if (this.btnCouper == null) new Exception("commande introuvable");
+        this.btnColler = (JButton) c.get("Coller");
+        if (this.btnColler == null) new Exception("commande introuvable");
+        this.btnInserer = (JButton) c.get("Inserer");
+        if (this.btnInserer == null) new Exception("commande introuvable");
+
 
     }
 }

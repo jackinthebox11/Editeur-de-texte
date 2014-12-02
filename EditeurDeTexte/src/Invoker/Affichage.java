@@ -26,7 +26,7 @@ public class Affichage extends JTextArea {
 
 
         final Command selectionner = c.get("selectionner");
-        final Command inserer = c.get("inserer");
+        final Command inserer = c.get("Inserer");
         final Command supprimer = c.get("supprimer");
 
 

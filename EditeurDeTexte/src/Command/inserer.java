@@ -1,7 +1,7 @@
 package Command;
 
-import Invoker.IHM;
-import Receiver.Moteur;
+import Invoker.*;
+import Receiver.*;
 
 /**
  * Created by Alex on 28/10/2014.
@@ -12,13 +12,15 @@ public class inserer implements Command {
 
     private IHM ihm;
 
-    public inserer(Moteur moteur) {
+    public inserer(Moteur moteur, IHM ihm) {
         this.moteur = moteur;
+        this.ihm = ihm;
 
     }
 
     public void execute() {
 
-        moteur.inserer(ihm.getTextUser());
+        moteur.inserer(ihm.getTextUser(), moteur.getBuffer());
+
     }
 }

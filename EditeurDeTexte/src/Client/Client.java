@@ -29,13 +29,17 @@ public class Client {
 
         ihm = new IHMImpl();
         moteur = new MoteurImpl();
-        //observer = new ObserverImpl(moteur);
 
+    try {
         commands = new HashMap<String, Command>();
         commands.put("Copier", new Copier(moteur));
         commands.put("Couper", new Couper(moteur));
         commands.put("Coller", new Coller(moteur));
-        commands.put("Inserer", new Inserer(moteur, ihm));
+        commands.put("Inserer", new inserer(moteur, ihm));
+    }
+    catch (IllegalArgumentException e) {
+        e.printStackTrace();
+    }
 
     }
 }

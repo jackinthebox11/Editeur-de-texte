@@ -5,12 +5,14 @@ package Receiver;
  */
 public interface Moteur {
 
-    public void inserer(String input);
+    public void inserer(String input, Buffer buffer);
 
     public void copier();
 
     public void coller();
 
     public void couper();
+
+    public Buffer getBuffer();
 
 }

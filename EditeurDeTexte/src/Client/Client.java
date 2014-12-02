@@ -2,7 +2,6 @@ package Client;
 
 import Invoker.IHM;
 import Invoker.IHMImpl;
-import Observer.ObserverImpl;
 import Receiver.Buffer;
 import Receiver.Moteur;
 import Receiver.MoteurImpl;
@@ -17,7 +16,6 @@ public class Client {
 
     private IHM ihm;
     private Moteur moteur;
-    private ObserverImpl observer;
     private HashMap<String, Command> commands;
 
 
@@ -37,6 +35,7 @@ public class Client {
         commands.put("Copier", new Copier(moteur));
         commands.put("Couper", new Couper(moteur));
         commands.put("Coller", new Coller(moteur));
+        commands.put("Inserer", new Inserer(moteur, ihm));
 
     }
 }

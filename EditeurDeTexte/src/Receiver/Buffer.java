@@ -50,7 +50,7 @@ public class Buffer implements Subject {
     public void notifyObservers() {
         for (Iterator<Observer> it = observers.iterator(); it.hasNext();) {
             Observer o = it.next();
-            o.notifyMe();
+            o.maj(this);
         }
     }
 

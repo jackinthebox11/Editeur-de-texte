@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 
 import Command.Command;
@@ -14,6 +16,8 @@ import Command.Command;
 public class IHMImpl implements IHM {
 
     private JFrame fenetre;
+
+    private HashMap<String, Command> commands;
 
     private  JPanel mainPanel;
     private JPanel toolBoxPanel;
@@ -32,7 +36,7 @@ public class IHMImpl implements IHM {
 
 
     public IHMImpl() {
-
+        commands = new HashMap<String, Command>();
         construireFenetre();
     }
 
@@ -82,6 +86,27 @@ public class IHMImpl implements IHM {
         mainPanel.add(txtAreaPanel, BorderLayout.CENTER);
         mainPanel.add(userTxtPanel, BorderLayout.SOUTH);
 
+        setCommands();
+
+        userTxtPanel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyChar() == Event.ENTER) {
+                    commands.get("Inserer").execute();
+                    userText.setText("");
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
         return mainPanel;
 
 
@@ -99,22 +124,25 @@ public class IHMImpl implements IHM {
 
     }
 
+    public void setCommands() {
+        this.btnCopier.addActionListener(new BtnActionListener("Copier", this.commands));
+        this.btnCouper.addActionListener(new BtnActionListener("Couper", this.commands));
+        this.btnColler.addActionListener(new BtnActionListener("Coller", this.commands));
+        this.btnInserer.addActionListener(new BtnActionListener("Inserer", this.commands));
+
+
+
+    }
+
     @Override
     public String getTextUser() {
         return userText.getText();
-
     }
 
-    public void setCommands(HashMap<String, Command> c) throws Exception {
-        this.btnCopier = (JButton) c.get("Copier");
-        if (this.btnCopier == null) new Exception("commande introuvable");
-        this.btnCouper = (JButton) c.get("Couper");
-        if (this.btnCouper == null) new Exception("commande introuvable");
-        this.btnColler = (JButton) c.get("Coller");
-        if (this.btnColler == null) new Exception("commande introuvable");
-        this.btnInserer = (JButton) c.get("Inserer");
-        if (this.btnInserer == null) new Exception("commande introuvable");
-
-
+    @Override
+    public void setTextUser(String txt) {
+        userText.setText(txt);
     }
+
+
 }

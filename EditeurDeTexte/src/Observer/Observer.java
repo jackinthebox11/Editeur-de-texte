@@ -8,6 +8,6 @@ public interface Observer {
     /**
      * Méthode appellée par le <i>subject</i> pour mettre à jour l'<i>observer</i>.
      */
-    void notifyMe();
+    void maj(Subject s);
 
 }

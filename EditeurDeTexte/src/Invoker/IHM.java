@@ -15,4 +15,6 @@ public interface IHM {
 
     public String getTextUser();
 
+    public void setTextUser(String txt);
+
 }

@@ -24,7 +24,7 @@ public class MoteurImpl implements Moteur {
     }
 
     @Override
-    public void inserer(String input) {
+    public void inserer(String input, Buffer buffer) {
         buffer.addStringAtPosition(input, selection.getDebut());
         buffer.notifyObservers();
     }
@@ -53,5 +53,10 @@ public class MoteurImpl implements Moteur {
         );
         buffer.deleteBufferSelection(selection.getDebut(), selection.getFin());
         buffer.notifyObservers();
+    }
+
+    @Override
+    public Buffer getBuffer() {
+        return buffer;
     }
 }
